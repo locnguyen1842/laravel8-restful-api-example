@@ -2,30 +2,38 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\BaseApiController;
+use App\Http\DTOs\ResponseCollection;
+use App\Http\DTOs\ResponseResource;
+use App\Http\DTOs\User\UserCollection;
+use App\Http\DTOs\User\UserResource;
+use App\Http\Requests\User\StoreUserRequest;
+use App\Http\Requests\User\UpdateUserRequest;
 use App\Models\User;
+use App\Services\User\UserService;
 use Illuminate\Http\Request;
-
-class UserController extends Controller
+class UserController extends BaseApiController
 {
+
+    private $userService;
+
+    public function __construct(UserService $userService) {
+        $this->userService = $userService;
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return User::all();
-    }
+        $users = $this->userService->all($request);
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return new ResponseCollection([
+            'collection' => UserCollection::fromResource($users->items()),
+            'paginator' => $users,
+        ]);
     }
 
     /**
@@ -34,31 +42,11 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        //
-    }
+        $this->userService->store($request);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return response()->noContent();
     }
 
     /**
@@ -68,9 +56,27 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function show(User $user)
     {
-        //
+        $user = $this->userService->show($user);
+        
+        return new ResponseResource([
+            'data' => UserResource::fromModel($user)
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(UpdateUserRequest $request,User $user)
+    {
+        $this->userService->update($request, $user);
+
+        return response()->noContent();
     }
 
     /**
