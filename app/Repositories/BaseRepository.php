@@ -22,6 +22,10 @@ abstract class BaseRepository implements RepositoryInterface
         $this->model = $model;
     }
 
+    public function modelFilter(string $modelFilterClass,?array $input = []) {
+        return $this->model->filter($input, $modelFilterClass);
+    }
+
     public function create(array $attributes)
     {
         $model = $this->model->newInstance($attributes);

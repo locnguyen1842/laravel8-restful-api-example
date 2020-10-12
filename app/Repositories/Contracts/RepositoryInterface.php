@@ -39,4 +39,14 @@ interface RepositoryInterface {
      */
     public function update(array $attributes, int $id);
 
+    /**
+     * Set a model filter
+     *
+     * @param string
+     * @param array|[] $searchQuery
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     * @throws \Exception
+     */
+    public function modelFilter(string $modelFilterClass, ?array $searchQuery = []);
 }

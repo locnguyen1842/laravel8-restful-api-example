@@ -2,8 +2,23 @@
 
 namespace App\Http\Requests;
 
+use App\Exceptions\InputValidationAPIException;
 use Illuminate\Foundation\Http\FormRequest;
+use \Illuminate\Contracts\Validation\Validator;
 
-class BaseFormRequest extends FormRequest
+abstract class BaseFormRequest extends FormRequest
 {
+    
+    /**
+     * Handle a failed validation attempt.
+     *
+     * @param  Validator  $validator
+     * @return void
+     *
+     * @throws InputValidationAPIException
+     */
+    public function failedValidation(Validator $validator)
+    {
+        throw new InputValidationAPIException($validator);
+    }
 }

@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\BaseApiController;
+use App\Http\DTOs\ResponseCollection;
+use App\Http\DTOs\ResponseResource;
+use App\Http\DTOs\User\UserCollection;
+use App\Http\DTOs\User\UserResource;
 use App\Http\Requests\User\StoreUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
 use App\Models\User;
@@ -24,7 +28,12 @@ class UserController extends BaseApiController
      */
     public function index(Request $request)
     {
-        return $this->userService->all($request);
+        $users = $this->userService->all($request);
+
+        return new ResponseCollection([
+            'collection' => UserCollection::fromResource($users->items()),
+            'paginator' => $users,
+        ]);
     }
 
     /**
@@ -36,6 +45,24 @@ class UserController extends BaseApiController
     public function store(StoreUserRequest $request)
     {
         $this->userService->store($request);
+
+        return response()->noContent();
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show(User $user)
+    {
+        $user = $this->userService->show($user);
+        
+        return new ResponseResource([
+            'data' => UserResource::fromModel($user)
+        ]);
     }
 
     /**
@@ -48,6 +75,8 @@ class UserController extends BaseApiController
     public function update(UpdateUserRequest $request,User $user)
     {
         $this->userService->update($request, $user);
+
+        return response()->noContent();
     }
 
     /**

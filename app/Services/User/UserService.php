@@ -2,6 +2,7 @@
 
 namespace App\Services\User;
 
+use App\ModelFilters\UserFilter;
 use App\Models\User;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use Illuminate\Http\Request;
@@ -16,7 +17,13 @@ class UserService {
 
     public function all(Request $request)
     {
-        return $this->userRepo->getNewQuery()->paginate(10);
+        $users = $this->userRepo->modelFilter(UserFilter::class, $request->all())->paginate($request->size);
+        return $users;
+    }
+
+    public function show(User $user)
+    {
+        return $user;
     }
 
     public function store(Request $request)
