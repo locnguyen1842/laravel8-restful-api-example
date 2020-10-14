@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\BaseApiController;
 use Illuminate\Http\Request;
 
 class AuthController extends BaseApiController

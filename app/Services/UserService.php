@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\User;
+namespace App\Services;
 
 use App\ModelFilters\UserFilter;
 use App\Models\User;
