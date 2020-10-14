@@ -37,4 +37,9 @@ class UserService {
         $validatedData = $request->validated();
         return $this->userRepo->update($validatedData, $user->id);
     }
+
+    public function delete(User $user)
+    {
+        return $user->delete();
+    }
 }
