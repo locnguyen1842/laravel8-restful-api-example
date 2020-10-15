@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\DTOs\User\UserCollection;
-use App\DTOs\User\UserResource;
+use App\Http\DTOs\User\UserCollection;
+use App\Http\DTOs\User\UserResource;
 use App\Http\Requests\User\StoreUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
 use App\Models\User;

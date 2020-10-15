@@ -1,9 +1,9 @@
 <?php
 
-namespace App\DTOs\Post;
+namespace App\Http\DTOs\Post;
 
-use App\DTOs\BaseJsonResource;
-use App\DTOs\User\UserResource;
+use App\Http\DTOs\BaseJsonResource;
+use App\Http\DTOs\User\UserResource;
 
 class PostResource extends BaseJsonResource
 {

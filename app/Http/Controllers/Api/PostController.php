@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\DTOs\Post\PostCollection;
-use App\DTOs\Post\PostResource;
+use App\Http\DTOs\Post\PostCollection;
+use App\Http\DTOs\Post\PostResource;
 use App\Http\Requests\Post\StorePostRequest;
 use App\Http\Requests\Post\UpdatePostRequest;
 use App\Models\Post;

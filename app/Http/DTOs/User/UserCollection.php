@@ -1,8 +1,8 @@
 <?php
 
-namespace App\DTOs\User;
+namespace App\Http\DTOs\User;
 
-use App\DTOs\BaseResourceCollection;
+use App\Http\DTOs\BaseResourceCollection;
 
 class UserCollection extends BaseResourceCollection
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\DTOs\User;
+namespace App\Http\DTOs\User;
 
-use App\DTOs\BaseJsonResource;
+use App\Http\DTOs\BaseJsonResource;
 
 class UserResource extends BaseJsonResource
 {

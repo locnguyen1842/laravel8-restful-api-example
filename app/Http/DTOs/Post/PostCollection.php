@@ -1,8 +1,8 @@
 <?php
 
-namespace App\DTOs\Post;
+namespace App\Http\DTOs\Post;
 
-use App\DTOs\BaseResourceCollection;
+use App\Http\DTOs\BaseResourceCollection;
 
 class PostCollection extends BaseResourceCollection
 {
