@@ -16,18 +16,16 @@ class UserFilter extends ModelFilter
     
     public function name($name)
     {
-        return $this->where(function($q) use ($name)
-        {
+        return $this->where(function($q) use ($name) {
             return $q->where('name', 'LIKE', "%$name%");
         });
     }
     
-    public function keyword($name)
+    public function q($keyword)
     {
-        return $this->where(function($q) use ($name)
-        {
-            return $q->where('name', 'LIKE', "%$name%")
-                ->orWhere('email', 'LIKE', "%$name%");
+        return $this->where(function($q) use ($keyword) {
+            return $q->where('name', 'LIKE', "%$keyword%")
+                ->orWhere('email', 'LIKE', "%$keyword%");
         });
     }
 }
