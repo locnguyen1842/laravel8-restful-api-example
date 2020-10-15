@@ -22,7 +22,7 @@ abstract class BaseRepository implements RepositoryInterface
         $this->model = $model;
     }
 
-    public function modelFilter(string $modelFilterClass,?array $input = []) {
+    public function modelFilter(string $modelFilterClass, ?array $input = []) {
         return $this->model->filter($input, $modelFilterClass);
     }
 
@@ -37,9 +37,7 @@ abstract class BaseRepository implements RepositoryInterface
 
     public function update(array $attributes,int $id)
     {
-        $query = $this->model->newQuery();
-
-        $model = $query->findOrFail($id);
+        $model = $$this->getNewQuery()->findOrFail($id);
 
         $model->fill($attributes);
 
@@ -56,5 +54,11 @@ abstract class BaseRepository implements RepositoryInterface
     public function getNewQuery()
     {
         return $this->model->newQuery();
+    }
+
+    public function find(int $id,array $columns = ['*'])
+    {
+        return $this->getNewQuery()->findOrFail($id, $columns);
+
     }
 }
