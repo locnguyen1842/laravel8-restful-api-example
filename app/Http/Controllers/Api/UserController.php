@@ -56,6 +56,6 @@ class UserController extends BaseApiController
     {
         $this->userService->delete($user);
         
-        return response()->noContent();
+        return $this->responseNoContent();
     }
 }
