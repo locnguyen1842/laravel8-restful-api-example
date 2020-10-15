@@ -2,23 +2,16 @@
 
 namespace App\Http\DTOs\User;
 
-use App\Models\User;
-use Spatie\DataTransferObject\DataTransferObject;
+use App\Http\DTOs\BaseJsonResource;
 
-class UserResource extends DataTransferObject
+class UserResource extends BaseJsonResource
 {
-    public int $id;
-
-    public string $name;
-
-    public string $email;
-    
-    public static function fromModel(User $user)
+    public function toArray($request)
     {
-        return new static([
-            'id' => $user->id,
-            'name' => $user->name,
-            'email' => $user->email,
-        ]);
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'email' => $this->email,
+        ];
     }
 }

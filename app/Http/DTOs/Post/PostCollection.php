@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\DTOs\User;
+namespace App\Http\DTOs\Post;
 
 use App\Http\DTOs\BaseResourceCollection;
 
-class UserCollection extends BaseResourceCollection
+class PostCollection extends BaseResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -15,10 +15,9 @@ class UserCollection extends BaseResourceCollection
     public function toArray($request)
     {
         $data = [
-            'data' => UserResource::collection($this->collection)
+            'data' => PostResource::collection($this->collection),
         ];
         
         return $this->toArrayWithPagination($data);
     }
-
 }

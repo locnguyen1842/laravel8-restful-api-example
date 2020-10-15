@@ -1,11 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\DTOs\ModelCollection;
+use App\Http\DTOs\ResponseCollection;
+use App\Http\DTOs\ResponseResource;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Routing\Controller as BaseController;
+use Spatie\DataTransferObject\DataTransferObject;
 
 class BaseApiController extends BaseController
 {
@@ -21,4 +26,9 @@ class BaseApiController extends BaseController
     const HTTP_METHOD_NOT_ALLOWED = 405;
     const HTTP_INTERNAL_SERVER_ERROR = 500;
     const HTTP_BAD_GATEWAY = 502;
+
+    public function responseNoContent($status = self::HTTP_NO_CONTENT, $headers = [])
+    {
+        response()->noContent($status, $headers);
+    }
 }
