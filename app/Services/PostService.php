@@ -5,6 +5,7 @@ namespace App\Services;
 use App\ModelFilters\PostFilter;
 use App\Models\Post;
 use App\Repositories\Contracts\PostRepositoryInterface;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 
 class PostService {
@@ -26,13 +27,13 @@ class PostService {
         return $post;
     }
 
-    public function store(Request $request)
+    public function store(FormRequest $request)
     {
         $validatedData = $request->validated();
         return $this->postRepo->create($validatedData);
     }
     
-    public function update(Request $request, Post $post)
+    public function update(FormRequest $request, Post $post)
     {
         $validatedData = $request->validated();
         return $this->postRepo->update($validatedData, $post->id);

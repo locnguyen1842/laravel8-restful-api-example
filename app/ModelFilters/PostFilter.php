@@ -36,6 +36,7 @@ class PostFilter extends ModelFilter
 
     public function userFullName($userFullName)
     {
+        /** @phpstan-ignore-next-line */
         return $this->related('user', 'name', '=', $userFullName);
     }
 }
