@@ -64,6 +64,9 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "larastan": [
+            ".\\vendor\\bin\\phpstan analyse --memory-limit=2G"
         ]
     }
 }
