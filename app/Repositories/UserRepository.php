@@ -14,7 +14,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     /**
      * UserRepository constructor.
      *
-     * @param User $model
+     * @param \App\Models\User $model
      */
     public function __construct(\App\Models\User $model)
     {

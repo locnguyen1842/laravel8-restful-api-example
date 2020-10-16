@@ -22,7 +22,7 @@ class UserController extends BaseApiController
     {
         $users = $this->userService->all($request);
 
-        return response(new UserCollection($users));
+        return $this->responseFromResource(new UserCollection($users));
     }
 
     public function store(StoreUserRequest $request)
@@ -36,7 +36,7 @@ class UserController extends BaseApiController
     {
         $user = $this->userService->show($user);
         
-        return response(new UserResource($user));
+        return $this->responseFromResource(new UserResource($user));
     }
 
     public function update(UpdateUserRequest $request,User $user)

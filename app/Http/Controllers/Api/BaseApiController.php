@@ -31,4 +31,9 @@ class BaseApiController extends BaseController
     {
         response()->noContent($status, $headers);
     }
+
+    public function responseFromResource($content = '', $status = self::HTTP_OK, $headers = [])
+    {
+        return response('', $status, $headers)->setContent($content);
+    }
 }

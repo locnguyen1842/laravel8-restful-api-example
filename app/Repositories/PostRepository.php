@@ -14,7 +14,7 @@ class PostRepository extends BaseRepository implements PostRepositoryInterface
     /**
      * PostRepository constructor.
      *
-     * @param Post $model
+     * @param \App\Models\Post $model
      */
     public function __construct(\App\Models\Post $model)
     {

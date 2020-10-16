@@ -4,16 +4,11 @@ namespace App\Enums;
 
 abstract class BaseEnum
 {
+    abstract static function getAll(bool $withStatusID = false): array;
     
     /**
-     * @param bool
-     * @return array
-     */
-    abstract static function getAll($withStatusID = false);
-    
-    /**
-     * @param mixed
-     * @return array
+     * @param  mixed $statusName
+     * @return  array
      */
     public static function findByName($statusName) {
         foreach(static::getAll(true) as $status) {
