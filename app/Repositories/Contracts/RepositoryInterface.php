@@ -42,9 +42,8 @@ interface RepositoryInterface {
     /**
      * Set a model filter
      *
-     * @param string
-     * @param array|[] $searchQuery
-     *
+     * @param string $modelFilterClass
+     * @param array|null $searchQuery
      * @return \Illuminate\Database\Eloquent\Builder
      * @throws \Exception
      */
@@ -53,7 +52,7 @@ interface RepositoryInterface {
     /**
      * Find a model by its primary key or throw an exception.
      *
-     * @param  mixed  $id
+     * @param  int  $id
      * @param  array  $columns
      * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|static|static[]
      *

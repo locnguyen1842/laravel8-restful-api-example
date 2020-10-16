@@ -15,7 +15,7 @@ abstract class BaseRepository implements RepositoryInterface
     /**
      * @param Model $model
      *
-     * @throws Exception
+     * @return void
      */
     public function __construct(Model $model)
     {
@@ -23,6 +23,7 @@ abstract class BaseRepository implements RepositoryInterface
     }
 
     public function modelFilter(string $modelFilterClass, ?array $input = []) {
+        /** @phpstan-ignore-next-line */
         return $this->model->filter($input, $modelFilterClass);
     }
 

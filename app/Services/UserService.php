@@ -5,6 +5,7 @@ namespace App\Services;
 use App\ModelFilters\UserFilter;
 use App\Models\User;
 use App\Repositories\Contracts\UserRepositoryInterface;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 
 class UserService {
@@ -26,13 +27,13 @@ class UserService {
         return $user;
     }
 
-    public function store(Request $request)
+    public function store(FormRequest $request)
     {
         $validatedData = $request->validated();
         return $this->userRepo->create($validatedData);
     }
     
-    public function update(Request $request, User $user)
+    public function update(FormRequest $request, User $user)
     {
         $validatedData = $request->validated();
         return $this->userRepo->update($validatedData, $user->id);
