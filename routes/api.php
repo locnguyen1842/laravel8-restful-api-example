@@ -24,5 +24,9 @@ Route::post('/login', 'Api\AuthController@login');
 Route::group(['middleware' => ['auth:api']], function () {
     Route::resource('/users', 'Api\UserController');
     Route::resource('/posts', 'Api\PostController');
+
+    Route::get('/posts/{post}/comments', 'Api\CommentController@getPostComments');
+
+    Route::get('/users/{user}/comments', 'Api\CommentController@getUserComments');
     
 });
