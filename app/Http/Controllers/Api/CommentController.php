@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Api\BaseApiController;
-use App\Http\DTOs\Comment\CommentCollection;
 use App\Http\DTOs\Comment\CommentPostResource;
 use App\Http\DTOs\Comment\CommentUserResource;
 use App\Http\DTOs\SimpleCollection;
+use App\Http\Requests\Comment\CommentOnPostCommentRequest;
 use App\Models\Post;
 use App\Models\User;
 use App\Services\CommentService;
@@ -33,5 +33,12 @@ class CommentController extends BaseApiController
         $comments = $this->commentService->getCommentsByUser($user, $request);
 
         return $this->responseFromResource(new SimpleCollection($comments, CommentUserResource::class));
+    }
+
+    public function commentOnPost(Post $post, CommentOnPostCommentRequest $request)
+    {
+        $this->commentService->commentOnPost($post, $request);
+
+        return $this->responseNoContent(self::HTTP_CREATED);
     }
 }

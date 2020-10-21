@@ -28,5 +28,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/posts/{post}/comments', 'Api\CommentController@getPostComments');
 
     Route::get('/users/{user}/comments', 'Api\CommentController@getUserComments');
+
+    Route::post('/posts/{post}/comments', 'Api\CommentController@commentOnPost');
     
 });
