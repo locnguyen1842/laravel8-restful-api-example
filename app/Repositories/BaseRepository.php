@@ -24,7 +24,7 @@ abstract class BaseRepository implements RepositoryInterface
 
     public function modelFilter(string $modelFilterClass, ?array $input = []) {
         /** @phpstan-ignore-next-line */
-        return $this->model->filter($input, $modelFilterClass);
+        return $this->model->modelFilter($modelFilterClass, $input);
     }
 
     public function create(array $attributes)
@@ -38,7 +38,7 @@ abstract class BaseRepository implements RepositoryInterface
 
     public function update(array $attributes,int $id)
     {
-        $model = $$this->getNewQuery()->findOrFail($id);
+        $model = $this->getNewQuery()->findOrFail($id);
 
         $model->fill($attributes);
 

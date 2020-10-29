@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use EloquentFilter\Filterable;
+use App\Traits\ModelFilterTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,7 +11,7 @@ use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, HasApiTokens, Filterable, SoftDeletes;
+    use HasFactory, Notifiable, HasApiTokens, ModelFilterTrait, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -46,5 +46,10 @@ class User extends Authenticatable
     public function posts()
     {
         return $this->hasMany(\App\Models\Post::class);
+    }
+    
+    public function comments()
+    {
+        return $this->hasMany(\App\Models\Comment::class);
     }
 }
