@@ -38,7 +38,7 @@ abstract class BaseRepository implements RepositoryInterface
 
     public function update(array $attributes,int $id)
     {
-        $model = $$this->getNewQuery()->findOrFail($id);
+        $model = $this->getNewQuery()->findOrFail($id);
 
         $model->fill($attributes);
 

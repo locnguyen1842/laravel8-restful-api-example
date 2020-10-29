@@ -2,14 +2,12 @@
 
 namespace App\Models;
 
-use App\Traits\ModelFilterTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Comment extends Model
+class Comment extends BaseModel
 {
-    use HasFactory, SoftDeletes, ModelFilterTrait;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'content',

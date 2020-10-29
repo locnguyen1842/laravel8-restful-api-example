@@ -2,14 +2,12 @@
 
 namespace App\Models;
 
-use App\Traits\ModelFilterTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Post extends Model
+class Post extends BaseModel
 {
-    use HasFactory, ModelFilterTrait, SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'title',

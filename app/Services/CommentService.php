@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\ModelFilters\CommentFilter;
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
 use App\Repositories\Contracts\CommentRepositoryInterface;
@@ -36,8 +37,27 @@ class CommentService {
     {
         $validatedData = $request->validated();
 
-        $comment = $this->commentRepo->create($validatedData);
+        $commentData = array_merge([
+            'user_id' => auth()->user()->id,
+            'post_id' => $post->id
+        ], $validatedData);
+
+        $comment = $this->commentRepo->create($commentData);
 
         return $comment;
+    }
+    
+    public function update(Comment $comment, FormRequest $request)
+    {
+        $validatedData = $request->validated();
+
+        $comment = $this->commentRepo->update($validatedData, $comment->id);
+
+        return $comment;
+    }
+
+    public function destroy(Comment $comment)
+    {
+        return $comment->delete();
     }
 }

@@ -14,21 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::post('/register', 'Api\AuthController@register');
-Route::post('/login', 'Api\AuthController@login');
-
-Route::group(['middleware' => ['auth:api']], function () {
-    Route::resource('/users', 'Api\UserController');
-    Route::resource('/posts', 'Api\PostController');
-
-    Route::get('/posts/{post}/comments', 'Api\CommentController@getPostComments');
-
-    Route::get('/users/{user}/comments', 'Api\CommentController@getUserComments');
-
-    Route::post('/posts/{post}/comments', 'Api\CommentController@commentOnPost');
+Route::group(['prefix' => 'v1'], function () {
+    Route::post('/login', 'Api\AuthController@login');
+    Route::group(['middleware' => ['auth:api']], function () {
     
+        Route::get('/posts/{post}/comments', 'Api\CommentController@getPostComments');
+    
+        Route::get('/users/{user}/comments', 'Api\CommentController@getUserComments');
+    
+        Route::post('/posts/{post}/comments', 'Api\CommentController@commentOnPost');
+    
+        Route::put('/comments/{comment}', 'Api\CommentController@update');
+        
+        Route::resource('/users', 'Api\UserController');
+        Route::resource('/posts', 'Api\PostController');
+        Route::resource('/comments', 'Api\CommentController')->except(['index', 'store']);
+    });
 });

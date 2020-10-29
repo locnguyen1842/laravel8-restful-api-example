@@ -7,6 +7,8 @@ use App\Http\DTOs\Comment\CommentPostResource;
 use App\Http\DTOs\Comment\CommentUserResource;
 use App\Http\DTOs\SimpleCollection;
 use App\Http\Requests\Comment\CommentOnPostCommentRequest;
+use App\Http\Requests\Comment\UpdateCommentRequest;
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
 use App\Services\CommentService;
@@ -40,5 +42,19 @@ class CommentController extends BaseApiController
         $this->commentService->commentOnPost($post, $request);
 
         return $this->responseNoContent(self::HTTP_CREATED);
+    }
+
+    public function update(Comment $comment, UpdateCommentRequest $request)
+    {
+        $this->commentService->update($comment, $request);
+
+        return $this->responseNoContent();
+    }
+
+    public function destroy(Comment $comment)
+    {
+        $this->commentService->destroy($comment);
+
+        return $this->responseNoContent();
     }
 }

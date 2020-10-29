@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Enums\UserStatuses;
 use App\Http\DTOs\User\UserCollection;
 use App\Http\DTOs\User\UserResource;
 use App\Http\Requests\User\StoreUserRequest;
