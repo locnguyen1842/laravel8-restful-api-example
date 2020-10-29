@@ -28,7 +28,7 @@ class PostController extends BaseApiController
 
     public function store(StorePostRequest $request)
     {
-        $post = $this->postService->store($request);
+        $this->postService->store($request);
 
         return $this->responseNoContent(self::HTTP_CREATED);
     }
@@ -42,14 +42,14 @@ class PostController extends BaseApiController
 
     public function update(UpdatePostRequest $request, Post $post)
     {
-        $post = $this->postService->update($request, $post);
+        $this->postService->update($request, $post);
 
         return $this->responseNoContent();
     }
 
     public function destroy(Post $post)
     {
-        $post = $this->postService->delete($post);
+        $this->postService->delete($post);
 
         return $this->responseNoContent(self::HTTP_OK);
     }
