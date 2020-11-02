@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Events\CommentedOnAPost;
 use App\ModelFilters\CommentFilter;
 use App\Models\Comment;
 use App\Models\Post;
@@ -43,6 +44,10 @@ class CommentService {
         ], $validatedData);
 
         $comment = $this->commentRepo->create($commentData);
+
+        event(
+            new CommentedOnAPost($comment->with(['post', 'post.user'])->first())
+        );
 
         return $comment;
     }
