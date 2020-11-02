@@ -9,6 +9,9 @@ class UserStatuses extends BaseEnum
 
     public static function all() : array
     {
-        return array_values(static::getClassConstants());
+        return [
+            self::USER_ACTIVE,
+            self::USER_INACTIVE
+        ];
     }
 }
