@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\DTOs\ModelCollection;
 use App\Http\DTOs\ResponseCollection;
 use App\Http\DTOs\ResponseResource;
+use App\Http\DTOs\SimpleCollection;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -34,6 +35,6 @@ class BaseApiController extends BaseController
 
     public function responseFromResource($content = '', $status = self::HTTP_OK, $headers = [])
     {
-        return response('', $status, $headers)->setContent($content);
+        return response($content, $status, $headers);
     }
 }
