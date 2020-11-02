@@ -46,13 +46,7 @@ class UserController extends BaseApiController
 
         return $this->responseNoContent();
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy(User $user)
     {
         $this->userService->delete($user);
