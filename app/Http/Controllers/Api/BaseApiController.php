@@ -2,16 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\DTOs\ModelCollection;
-use App\Http\DTOs\ResponseCollection;
-use App\Http\DTOs\ResponseResource;
-use App\Http\DTOs\SimpleCollection;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Routing\Controller as BaseController;
-use Spatie\DataTransferObject\DataTransferObject;
 
 class BaseApiController extends BaseController
 {
