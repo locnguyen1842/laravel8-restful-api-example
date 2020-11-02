@@ -23,7 +23,7 @@ class PostController extends BaseApiController
     {
         $posts = $this->postService->all($request);
 
-        return $this->responseFromResource(new PostCollection($posts));
+        return $this->response(new PostCollection($posts));
     }
 
     public function store(StorePostRequest $request)
@@ -37,7 +37,7 @@ class PostController extends BaseApiController
     {
         $post = $this->postService->show($post);
 
-        return $this->responseFromResource(new PostResource($post));
+        return $this->response(new PostResource($post));
     }
 
     public function update(UpdatePostRequest $request, Post $post)
