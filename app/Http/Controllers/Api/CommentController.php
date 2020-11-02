@@ -27,14 +27,14 @@ class CommentController extends BaseApiController
     {
         $comments = $this->commentService->getCommentsByPost($post, $request);
 
-        return $this->responseFromResource(new SimpleCollection($comments, CommentPostResource::class));
+        return $this->response(new SimpleCollection($comments, CommentPostResource::class));
     }
     
     public function getUserComments(User $user, Request $request)
     {
         $comments = $this->commentService->getCommentsByUser($user, $request);
 
-        return $this->responseFromResource(new SimpleCollection($comments, CommentUserResource::class));
+        return $this->response(new SimpleCollection($comments, CommentUserResource::class));
     }
 
     public function commentOnPost(Post $post, CommentOnPostCommentRequest $request)
