@@ -4,10 +4,12 @@ namespace App\Exceptions;
 
 use App\Enums\Validation\ValidationFieldErrorCode;
 use App\Enums\Validation\ValidationRuleErrorCode;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -65,16 +67,45 @@ class Handler extends ExceptionHandler
                 }
             }
         }
+        
+        return $this->jsonMessageRender($request, $e, true);
+    }
 
-        if ($e instanceof HttpResponseException) {
-            return $e->getResponse();
-        } elseif ($e instanceof AuthenticationException) {
-            return $this->unauthenticated($request, $e);
-        } elseif ($e instanceof InputValidationAPIException) {
-            return $this->convertValidationAPIExceptionToResponse($e, $request);
+    private function jsonMessageRender($request,\Throwable $e, $debugging = false)
+    {
+
+        switch (true) {
+            case $e instanceof HttpResponseException:
+
+                return $e->getResponse();
+
+                break;
+            case $e instanceof AuthorizationException:
+
+                return $this->unauthorizedJsonMessage();
+
+                break;
+            case $e instanceof AuthenticationException:
+
+                return $this->unauthenticatedJsonMessage();
+
+                break;
+            case $e instanceof AccessDeniedHttpException:
+
+                return $this->unauthenticatedJsonMessage();
+
+                break;
+            case $e instanceof InputValidationAPIException:
+
+                return $this->convertValidationAPIExceptionToResponse($e, $request);
+
+                break;
+            default:
+
+                return $debugging ? $this->prepareJsonResponse($request, $e) :  response(['message' => 'Page not found'], 404);
+
+                break;
         }
-
-        return $this->prepareJsonResponse($request, $e);
     }
     
     /**
@@ -118,5 +149,17 @@ class Handler extends ExceptionHandler
             'message' => $exception->getMessage(),
             'errors' => $errorResponse,
         ], $exception->status);
+    }
+
+    private function unauthorizedJsonMessage() {
+        return response()->json([
+            'message' => 'Unauthorized.'
+        ], 401);
+    }
+    
+    private function unauthenticatedJsonMessage() {
+        return response()->json([
+            'message' => 'Unauthenticated.'
+        ], 403);
     }
 }

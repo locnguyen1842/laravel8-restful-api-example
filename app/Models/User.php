@@ -14,6 +14,8 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasApiTokens, ModelFilterTrait, SoftDeletes, HasRoles;
 
+    protected $guard_name = 'api';
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -34,6 +36,16 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+
+    public function isAdmin()
+    {
+        if($this->hasRole('admin')) {
+            return true;
+        }
+
+        return false;
+    }
 
     /**
      * The attributes that should be cast to native types.

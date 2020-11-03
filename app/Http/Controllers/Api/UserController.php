@@ -16,6 +16,8 @@ class UserController extends BaseApiController
 
     public function __construct(UserService $userService) {
         $this->userService = $userService;
+        
+        $this->authorizeResource(User::class, 'user');
     }
 
     public function index(Request $request)

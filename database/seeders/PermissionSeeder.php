@@ -19,7 +19,7 @@ class PermissionSeeder extends Seeder
             ...$this->generateCRUDPermission('posts'),
             ...$this->generateCRUDPermission('users'),
             ...$this->generateCRUDPermission('comments'),
-            ...$this->generatePermissionByName(['leave comment on post', 'read post comments']),
+            ...$this->generatePermissionByName(['leave comment on post', 'read post comments', 'read user comments']),
         ];
 
         \DB::table('permissions')->insert($permissions);
