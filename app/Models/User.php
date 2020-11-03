@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use libphonenumber\PhoneNumberFormat;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -25,6 +26,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone_number',
     ];
 
     /**
@@ -37,6 +39,10 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function getNationalPhoneNumberAttribute()
+    {
+        return str_replace(' ', '', phone_number($this->phone_number, PhoneNumberFormat::NATIONAL));
+    }
 
     public function isAdmin()
     {

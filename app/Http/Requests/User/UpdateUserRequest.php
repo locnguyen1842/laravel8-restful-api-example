@@ -3,6 +3,7 @@
 namespace App\Http\Requests\User;
 
 use App\Http\Requests\BaseFormRequest;
+use libphonenumber\PhoneNumberFormat;
 
 class UpdateUserRequest extends BaseFormRequest
 {
@@ -25,6 +26,14 @@ class UpdateUserRequest extends BaseFormRequest
     {
         return [
             'name' => 'required',
+            'phone_number' => 'phone:VN|required|unique:\App\Models\User,phone_number,' . $this->user->phone_number,
         ];
+    }
+
+    public function prepareForValidation()
+    {
+        $this->merge([
+            'phone_number' => phone_number($this->phone_number, PhoneNumberFormat::INTERNATIONAL),
+        ]);
     }
 }

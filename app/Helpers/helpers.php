@@ -24,3 +24,23 @@ if (!function_exists('authenticatedUser')) {
         return auth($guardName)->user();
     }
 }
+
+if (!function_exists('phone_number')) {
+    /**
+     * @param string $number
+     * @param int $format
+     * @param array $country
+     * 
+     * @return \Propaganistas\LaravelPhone\PhoneNumber|string
+     */
+    function phone_number($number, $format = null, $country = [])
+    {
+        if(empty($number)) return "";
+
+        if(empty($country)) {
+            $country = config('app.default_phone_country');
+        }
+        
+        return phone($number, $country, $format);
+    }
+}
