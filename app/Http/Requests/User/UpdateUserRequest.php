@@ -25,7 +25,6 @@ class UpdateUserRequest extends BaseFormRequest
     {
         return [
             'name' => 'required',
-            'email' => 'email|required|unique:\App\Models\User,id,'  . $this->user->id,
         ];
     }
 }

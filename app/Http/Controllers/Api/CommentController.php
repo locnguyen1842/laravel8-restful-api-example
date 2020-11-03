@@ -25,6 +25,8 @@ class CommentController extends BaseApiController
 
     public function getPostComments(Post $post, Request $request)
     {
+        $this->authorize('viewPostComments', Comment::class);
+
         $comments = $this->commentService->getCommentsByPost($post, $request);
 
         return $this->response(new SimpleCollection($comments, CommentPostResource::class));
@@ -32,6 +34,8 @@ class CommentController extends BaseApiController
     
     public function getUserComments(User $user, Request $request)
     {
+        $this->authorize('viewUserComments', [Comment::class, $user]);
+
         $comments = $this->commentService->getCommentsByUser($user, $request);
 
         return $this->response(new SimpleCollection($comments, CommentUserResource::class));
@@ -39,6 +43,8 @@ class CommentController extends BaseApiController
 
     public function commentOnPost(Post $post, CommentOnPostCommentRequest $request)
     {
+        $this->authorize('leaveCommentOnPost', Comment::class);
+
         $this->commentService->commentOnPost($post, $request);
 
         return $this->responseNoContent(self::HTTP_CREATED);
@@ -46,6 +52,8 @@ class CommentController extends BaseApiController
 
     public function update(Comment $comment, UpdateCommentRequest $request)
     {
+        $this->authorize('update', Comment::class);
+
         $this->commentService->update($comment, $request);
 
         return $this->responseNoContent();
@@ -53,6 +61,8 @@ class CommentController extends BaseApiController
 
     public function destroy(Comment $comment)
     {
+        $this->authorize('delete', Comment::class);
+
         $this->commentService->destroy($comment);
 
         return $this->responseNoContent();
