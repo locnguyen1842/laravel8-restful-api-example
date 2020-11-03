@@ -4,7 +4,7 @@ namespace App\Http\DTOs;
 
 class SimpleCollection extends BaseResourceCollection
 {
-    
+    /** @var BaseJsonResource */
     public $resourceClass;
 
     public $additional;
@@ -17,7 +17,6 @@ class SimpleCollection extends BaseResourceCollection
 
     public function toArray($request)
     {
-
         $data = [
             'data' => $this->resourceClass::collection($this->collection),
         ];
