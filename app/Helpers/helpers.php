@@ -12,3 +12,15 @@ if (!function_exists('distance')) {
         return $meters;
     }
 }
+
+if (!function_exists('authenticatedUser')) {
+    /**
+     * @param string $guardName
+     * 
+     * @return \Illuminate\Contracts\Auth\Authenticatable|null
+     */
+    function authenticatedUser($guardName = 'api')
+    {
+        return auth($guardName)->user();
+    }
+}

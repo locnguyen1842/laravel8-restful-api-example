@@ -2,11 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
-class UserSeeder extends Seeder
+class RoleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,20 +17,20 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        \DB::table('users')->insert(
+        \DB::table('roles')->insert(
             [
                 [
                     'id' => 1,
                     'name' => 'admin',
-                    'email' => 'admin@gmail.com',
-                    'password' => Hash::make('123123'),
+                    'guard_name' => 'api',
+                    'created_at' => Carbon::now(),
                 ],
                 [
                     'id' => 2,
-                    'name' => 'sample',
-                    'email' => 'sample@gmail.com',
-                    'password' => Hash::make('123123'),
-                ],
+                    'name' => 'user',
+                    'guard_name' => 'api',
+                    'created_at' => Carbon::now(),
+                ]
             ]
         );
     }
