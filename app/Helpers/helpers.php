@@ -13,13 +13,13 @@ if (!function_exists('distance')) {
     }
 }
 
-if (!function_exists('authenticatedUser')) {
+if (!function_exists('authenticated_user')) {
     /**
      * @param string $guardName
      * 
      * @return \Illuminate\Contracts\Auth\Authenticatable|null
      */
-    function authenticatedUser($guardName = 'api')
+    function authenticated_user($guardName = 'api')
     {
         return auth($guardName)->user();
     }
