@@ -16,6 +16,8 @@ class PostController extends BaseApiController
 
     public function __construct(PostService $postService) {
         $this->postService = $postService;
+
+        $this->authorizeResource(Post::class, 'post');
     }
 
     public function index(Request $request)

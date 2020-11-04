@@ -45,6 +45,7 @@ class ValidationRuleErrorCode extends BaseErrorCodeEnum
             'Same' => '036',
             'Size' => '037',
             'Unique' => '038',
+            'Phone' => '039',
         ];
     }
 }

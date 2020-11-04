@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
+use libphonenumber\PhoneNumberFormat;
+use Propaganistas\LaravelPhone\PhoneNumber;
 
 class UserService {
 
@@ -30,12 +32,14 @@ class UserService {
     public function store(FormRequest $request)
     {
         $validatedData = $request->validated();
+
         return $this->userRepo->create($validatedData);
     }
     
     public function update(FormRequest $request, User $user)
     {
         $validatedData = $request->validated();
+
         return $this->userRepo->update($validatedData, $user->id);
     }
 
