@@ -12,6 +12,7 @@ class UserResource extends BaseJsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
+            'phone_number' => $this->phone_number,
         ];
     }
 }

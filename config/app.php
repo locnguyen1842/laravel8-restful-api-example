@@ -123,6 +123,20 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Application Default Phone Country
+    |--------------------------------------------------------------------------
+    |
+    | The application locale determines the default phone country that will be used
+    | by the phone number service provider. You are free to set this value
+    | to any of the country which will be supported by the application.
+    |
+    */
+
+    'default_phone_country' => 'VN',
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
