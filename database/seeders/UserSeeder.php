@@ -21,14 +21,14 @@ class UserSeeder extends Seeder
                     'id' => 1,
                     'name' => 'admin',
                     'email' => 'admin@gmail.com',
-                    'phone_number' => '+84 332 530 123',
+                    'phone_number' => '+84332530666',
                     'password' => Hash::make('123123'),
                 ],
                 [
                     'id' => 2,
                     'name' => 'sample',
                     'email' => 'sample@gmail.com',
-                    'phone_number' => '+84 332 530 666',
+                    'phone_number' => '+84332530123',
                     'password' => Hash::make('123123'),
                 ],
             ]

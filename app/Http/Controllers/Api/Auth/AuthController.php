@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
+use App\Exceptions\InputValidationAPIException;
 use App\Http\Controllers\Api\BaseApiController;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Container\Container as Application;
@@ -9,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use \Laravel\Passport\Client;
 use Illuminate\Container\Container;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends BaseApiController
 {
@@ -125,10 +127,25 @@ class AuthController extends BaseApiController
      */
     protected function loginValidate(Request $request)
     {
-        return $request->validate([
-            $this->usernameField => 'required',
-            $this->passwordField => 'required'
-        ]);
+        $this->prepareForValidation($request);
+
+        $validator = Validator::make($request->only([ $this->usernameField, $this->passwordField ]), 
+            [
+                $this->usernameField => 'required',
+                $this->passwordField => 'required',
+            ]
+        );
+
+        if ($validator->fails()) {
+            throw new InputValidationAPIException($validator);
+        }
+
+        return $validator->validated();
+    }
+
+    protected function prepareForValidation(Request $request)
+    {
+        // 
     }
 
     /**

@@ -39,9 +39,19 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public static function findForPassport($username)
+    {
+        return self::where('phone_number', $username)->first();
+    }
+
     public function getNationalPhoneNumberAttribute()
     {
         return str_replace(' ', '', phone_number($this->phone_number, PhoneNumberFormat::NATIONAL));
+    }
+
+    public function getParsedPhoneNumberAttribute()
+    {
+        return phone_number($this->phone_number);
     }
 
     public function isAdmin()
