@@ -39,10 +39,13 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    // define how passport get a user
     public static function findForPassport($username)
     {
-        return self::where('phone_number', $username)->first();
+        // change 'email' to 'phone_number' if you want to login as phone number - (notice: uncomment login as phone_number on \App\Http\Controllers\Api\Auth\ApiLoginController too)
+        return self::where('email', $username)->first();
     }
+
 
     public function getNationalPhoneNumberAttribute()
     {
