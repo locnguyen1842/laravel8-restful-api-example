@@ -31,9 +31,18 @@ class UserService {
 
     public function store(FormRequest $request)
     {
-        $validatedData = $request->validated();
+        return \DB::transaction(function () use($request) {
+            $validatedData = $request->validated();
+            
+            $validatedData['password'] = bcrypt($validatedData['password']);
 
-        return $this->userRepo->create($validatedData);
+            $user = $this->userRepo->create($validatedData);
+
+            $user->assignRole($validatedData['role']);
+
+            return $user;
+        });
+
     }
     
     public function update(FormRequest $request, User $user)

@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             RolePermissionSeeder::class,
             UserRoleSeeder::class,
+            OAuth2ClientAnotherApiSeeder::class,
         ]);
     }
 }

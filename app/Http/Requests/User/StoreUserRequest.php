@@ -4,6 +4,7 @@ namespace App\Http\Requests\User;
 
 use App\Http\Requests\BaseFormRequest;
 use libphonenumber\PhoneNumberFormat;
+use Spatie\Permission\Models\Role;
 
 class StoreUserRequest extends BaseFormRequest
 {
@@ -29,6 +30,7 @@ class StoreUserRequest extends BaseFormRequest
             'email' => 'email|required|unique:\App\Models\User',
             'phone_number' => 'phone:VN|required|unique:\App\Models\User',
             'password' => 'confirmed|required',
+            'role' => 'required|exists:\Spatie\Permission\Models\Role,name|in:' . implode(',', Role::all()->pluck('name')->toArray())
         ];
     }
 

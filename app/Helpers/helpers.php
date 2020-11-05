@@ -13,13 +13,13 @@ if (!function_exists('distance')) {
     }
 }
 
-if (!function_exists('authenticatedUser')) {
+if (!function_exists('authenticated_user')) {
     /**
      * @param string $guardName
      * 
      * @return \Illuminate\Contracts\Auth\Authenticatable|null
      */
-    function authenticatedUser($guardName = 'api')
+    function authenticated_user($guardName = 'api')
     {
         return auth($guardName)->user();
     }
@@ -33,7 +33,7 @@ if (!function_exists('phone_number')) {
      * 
      * @return \Propaganistas\LaravelPhone\PhoneNumber|string
      */
-    function phone_number($number, $format = null, $country = [])
+    function phone_number($number, $format = null, $country = [], $removeWhiteSpace = true)
     {
         if(empty($number)) return "";
 
@@ -41,6 +41,12 @@ if (!function_exists('phone_number')) {
             $country = config('app.default_phone_country');
         }
         
-        return phone($number, $country, $format);
+        $phone = phone($number, $country, $format);
+
+        if(is_string($phone) && $removeWhiteSpace){
+            $phone = str_replace(' ', '', $phone);
+        }
+
+        return $phone;
     }
 }
