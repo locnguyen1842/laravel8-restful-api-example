@@ -19,6 +19,7 @@ This project applies some of the things that are essential for the REST API impl
 - Exception Handling (with Custom Error Code)
 - Enums
 - Helpers
+- Multi guard with passport
 
 ## Installation
 
