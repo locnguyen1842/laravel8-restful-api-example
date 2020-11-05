@@ -33,3 +33,4 @@ Please meet the laravel documentation [here](https://laravel.com/docs/8.x/instal
 4. Make a .env: `cp .env.example .env` (then add database information)
 5. Generate an app encryption key: `php artisan key:generate`
 5. Migrate and Seed the database : `php artisan migrate --seed`
+

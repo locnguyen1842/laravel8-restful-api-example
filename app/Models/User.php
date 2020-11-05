@@ -45,8 +45,7 @@ class User extends Authenticatable
         // change 'email' to 'phone_number' if you want to login as phone number - (notice: uncomment login as phone_number on \App\Http\Controllers\Api\Auth\ApiLoginController too)
         return self::where('email', $username)->first();
     }
-
-
+  
     public function getNationalPhoneNumberAttribute()
     {
         return str_replace(' ', '', phone_number($this->phone_number, PhoneNumberFormat::NATIONAL));
