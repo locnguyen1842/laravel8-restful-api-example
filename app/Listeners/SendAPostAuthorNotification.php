@@ -29,7 +29,11 @@ class SendAPostAuthorNotification implements ShouldQueue
         $comment = $event->comment;
 
         $author = $comment->post->user;
-
-        $author->notify(new SendMailToPostAuthorHasANewComment($comment));
+      
+        try {
+            $author->notify(new SendMailToPostAuthorHasANewComment($comment));
+        } catch (\Throwable $th) {
+            // then skip
+        }
     }
 }
