@@ -5,8 +5,9 @@
 
 This is a sample project built using laravel 8 and adopting the repository design pattern architecture
 
-This project applies some of the things that are essential for the REST API implementation, such as:
+This project have some features, such as:
 
+- Basic user, post, comment implementation
 - API Resource (Data Transfer Object)
 - Service Layer (Business Logic Layer)
 - Model Filter [Tucker-Eric/EloquentFilter](https://github.com/Tucker-Eric/EloquentFilter)
@@ -17,10 +18,18 @@ This project applies some of the things that are essential for the REST API impl
 - Telescope [documentation](https://laravel.com/docs/8.x/telescope)
 - International Phone Number Library [Propaganistas/Laravel-Phone](https://github.com/Propaganistas/Laravel-Phone)
 - Exception Handling (with Custom Error Code)
-- Enums
 - Helpers
 - Multi guard with passport
 
+## Requirements
+
+Please meet the laravel documentation [here](https://laravel.com/docs/8.x/installation#server-requirements)
+
 ## Installation
 
-Please follow this tutorial [devmarketer](https://devmarketer.io/learn/setup-laravel-project-cloned-github-com/)
+1. Clone the repository: `git clone https://github.com/locnguyen1842/laravel8-restful-api-example.git`
+2. Change to project directory ` cd laravel8-restful-api-example`
+3. Install dependencies: `composer install`
+4. Make a .env: `cp .env.example .env` (then add database information)
+5. Generate an app encryption key: `php artisan key:generate`
+5. Migrate and Seed the database : `php artisan migrate --seed`
