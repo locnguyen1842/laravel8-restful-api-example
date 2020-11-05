@@ -45,6 +45,11 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+        'another-api' => [
+            'driver' => 'passport',
+            'provider' => 'another_users',
+            'hash' => false,
+        ],
     ],
 
     /*
@@ -69,11 +74,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'another_users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\AnotherUser::class,
+        ],
     ],
 
     /*

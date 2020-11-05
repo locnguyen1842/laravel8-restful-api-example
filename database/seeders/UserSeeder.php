@@ -21,12 +21,25 @@ class UserSeeder extends Seeder
                     'id' => 1,
                     'name' => 'admin',
                     'email' => 'admin@gmail.com',
+                    'phone_number' => '+84 332 530 123',
                     'password' => Hash::make('123123'),
                 ],
                 [
                     'id' => 2,
                     'name' => 'sample',
                     'email' => 'sample@gmail.com',
+                    'phone_number' => '+84 332 530 666',
+                    'password' => Hash::make('123123'),
+                ],
+            ]
+        );
+
+        \DB::table('another_users')->insert(
+            [
+                [
+                    'id' => 1,
+                    'name' => 'another',
+                    'email' => 'another@gmail.com',
                     'password' => Hash::make('123123'),
                 ],
             ]
