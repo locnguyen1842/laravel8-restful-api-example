@@ -14,6 +14,7 @@ class ValidationFieldErrorCode extends BaseErrorCodeEnum
             'summary' => '0005',
             'description' => '0006',
             'phone_number' => '0007',
+            'role' => '0008',
         ]);
     }
 }

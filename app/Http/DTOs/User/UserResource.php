@@ -13,6 +13,7 @@ class UserResource extends BaseJsonResource
             'name' => $this->name,
             'email' => $this->email,
             'phone_number' => $this->phone_number,
+            'phone_country' => $this->parsed_phone_number->getCountry(),
         ];
     }
 }
